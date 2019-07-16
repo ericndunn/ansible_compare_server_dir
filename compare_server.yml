@@ -1,0 +1,11 @@
+---
+- hosts: "all"
+  gather_facts: true
+  roles: [compare_server]
+  vars: 
+  vars_files: [compare_server/vars/main.yml] 
+   
+
+
+
+  

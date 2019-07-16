@@ -1,0 +1,5 @@
+---
+# tasks file for compare_server
+- include_tasks: compare_server_dir.yml
+
+
