@@ -51,7 +51,7 @@ pipeline {
                         inventory: '/Users/${MY_USERID}/${INV_FILE}',
                     limit: '${INV_GRP}',
                         playbook: '${WORKSPACE}/compare_server.yml',
-                    colorized: true
+                    colorized: false
                 }
             }
         }
