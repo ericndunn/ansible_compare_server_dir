@@ -3,12 +3,9 @@
 # - debug:
 #     msg: "{{ my_setup }}"
 
-
-# --- first --- WORKS
-
 - name: Find all files
   find:
-    path: "{{ my_folder }}"
+    path: "{{ inv_folder }}"
   register: list_of_files
 
 - name: set_fact - basename all files  
@@ -20,11 +17,9 @@
 
 - name: stat files from set_fact
   stat:
-    path: "{{ my_folder }}/{{ item }}"
+    path: "{{ inv_folder }}/{{ item }}"
   loop: "{{ files }}"
   register: status_of_files
-
-# --- second --- WORKS
 
 - name: set_fact for master_list
   set_fact:
@@ -36,53 +31,53 @@
     msg: "{{ master_list|
              symmetric_difference(hostvars[item_host].status_of_files.results|
              json_query('[].{item: item, hash: stat.checksum}')) }}"
-  loop: "{{ groups['FS-AA-PERF-WAS'] | difference([ master ]) }}"
+  loop: "{{ groups['{{ INV_GRP }}'] | difference([ master ]) }}"
   loop_control:
     loop_var: item_host            
 
 #################################################################################
 
-# Determine if a path exists and is a directory.  Note that we need to test
-# both that p.stat.isdir actually exists, and also that it's set to true.
-- name: Recursively find /usr/WebSphere/wlp/usr/servers war files
-  find:
-    paths: "{{ was_server_path }}"
-    patterns: "*.war"
-    get_checksum: yes
-    recurse: yes
-    excludes: '*.log,*.txt'
-  register: find_wars1
-  # delegate_to: va33tlvwbs330
+# # Determine if a path exists and is a directory.  Note that we need to test
+# # both that p.stat.isdir actually exists, and also that it's set to true.
+# - name: Recursively find /usr/WebSphere/wlp/usr/servers war files
+#   find:
+#     paths: "{{ was_server_path }}"
+#     patterns: "*.war"
+#     get_checksum: yes
+#     recurse: yes
+#     excludes: '*.log,*.txt'
+#   register: find_wars1
+#   # delegate_to: va33tlvwbs330
 
-- name: item.0 returns from the first list, item.1 returns from the second list
-  debug:
-    msg: "{{ item.0 }} and {{ item.1 }}"
-  with_together:
-    - "{{ find_wars1.files | json_query('[].path[]') | list }}"
-    - "{{ find_wars1.files | json_query('[].checksum[]') | list }}" 
+# - name: item.0 returns from the first list, item.1 returns from the second list
+#   debug:
+#     msg: "{{ item.0 }} and {{ item.1 }}"
+#   with_together:
+#     - "{{ find_wars1.files | json_query('[].path[]') | list }}"
+#     - "{{ find_wars1.files | json_query('[].checksum[]') | list }}" 
 
-- name: Ansible create file if it doesn't exist example
-  file:
-    path: "{{ workspace_dir }}/output.csv"
-    state: touch
-    mode: 0777
-  delegate_to: localhost 
+# - name: Ansible create file if it doesn't exist example
+#   file:
+#     path: "{{ workspace_dir }}/output.csv"
+#     state: touch
+#     mode: 0777
+#   delegate_to: localhost 
 
-- shell: 
-    echo "hostname,path,sha1sum" > "{{ workspace_dir }}/output.csv"
-  delegate_to: localhost         
+# - shell: 
+#     echo "hostname,path,sha1sum" > "{{ workspace_dir }}/output.csv"
+#   delegate_to: localhost         
 
-- shell:
-    echo "{{ ansible_hostname }},{{ item.0 }},{{ item.1 }}" >> "{{ workspace_dir }}/output.csv"
-    # echo "{{ ansible_hostname }}\n{{ host_features2 | regex_replace(', ', '\n') }}" >> "{{ workspace_dir }}/output1.txt"
-  with_together:
-    - "{{ find_wars1.files | json_query('[].path[]') | list }}"
-    - "{{ find_wars1.files | json_query('[].checksum[]') | list }}"  
-  delegate_to: localhost
-  register: shell_echo
-- debug:
-    msg: 
-      - "{{ shell_echo.results| map(attribute='_ansible_item_label') | list }}"       
+# - shell:
+#     echo "{{ ansible_hostname }},{{ item.0 }},{{ item.1 }}" >> "{{ workspace_dir }}/output.csv"
+#     # echo "{{ ansible_hostname }}\n{{ host_features2 | regex_replace(', ', '\n') }}" >> "{{ workspace_dir }}/output1.txt"
+#   with_together:
+#     - "{{ find_wars1.files | json_query('[].path[]') | list }}"
+#     - "{{ find_wars1.files | json_query('[].checksum[]') | list }}"  
+#   delegate_to: localhost
+#   register: shell_echo
+# - debug:
+#     msg: 
+#       - "{{ shell_echo.results| map(attribute='_ansible_item_label') | list }}"       
 
 # # ...........................................
 
