@@ -31,7 +31,7 @@
     msg: "{{ master_list|
              symmetric_difference(hostvars[item_host].status_of_files.results|
              json_query('[].{item: item, hash: stat.checksum}')) }}"
-  loop: "{{ groups['FS-AA-PERF-WAS'] | difference([ master ]) }}"
+  loop: "{{ groups['all'] | difference([ master ]) }}"
   loop_control:
     loop_var: item_host            
 
