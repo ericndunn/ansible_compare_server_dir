@@ -26,7 +26,7 @@
     master_list: "{{ hostvars[master].status_of_files.results|
                      json_query('[].{item: item, hash: stat.checksum}') }}"
 
-- name: debug - set_fact for master_list                     
+- name: DEBUG - set_fact for master_list                     
   debug:
     msg: "{{ master_list|
              symmetric_difference(hostvars[item_host].status_of_files.results|
