@@ -1,7 +1,6 @@
 ---
 workspace_dir: "{{ lookup('env','WORKSPACE') }}"
 my_userid: "{{ lookup('env','MY_USERID') }}"
-my_password: "{{ lookup('env','MY_PASSWORD') }}"
 was_server_path: /usr/WebSphere/wlp/usr/servers
 perf1_api: "{{ was_server_path }}/perf1_api"
 perf2_api: "{{ was_server_path }}/perf2_api"
