@@ -16,7 +16,7 @@ pipeline {
             steps {            
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                     echo 'Validate Access'
-                    ansiblePlaybook credentialsId: 'AG19884_PASSKEY',
+                    ansiblePlaybook credentialsId: 'PASSKEY_TO_SERVER',
                     installation: 'ansible', 
                         inventory: '/Users/${MY_USERID}/${INV_FILE}',
                     limit: '${INV_GRP}',
