@@ -1,9 +1,11 @@
 pipeline {
     agent { label 'MASTER' }
         parameters {
+            string(defaultValue: "MY_USERID", description: 'User ID', name: 'MY_USERID')
+            string(defaultValue: "MY_PASSWORD", description: 'User ID', name: 'MY_PASSWORD')
             string(defaultValue: "test_inventory", description: 'Ansible Host file', name: 'INV_FILE')
             string(defaultValue: "AA-PROD-WAS", description: 'Ansible Host Group', name: 'INV_GRP')
-            string(defaultValue: "va10plvwbs443", description: 'Master Source Server', name: 'MASTER_SERVER')  
+            string(defaultValue: "va10plvwbs443", description: 'Master Source Server to compare FROM', name: 'MASTER_SERVER')  
         }
     stages {
         //stage('Cleanup Jenkins Job Workspace'){
