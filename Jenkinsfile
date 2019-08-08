@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Demo Performance'){
             steps {
-                echo 'Clap if you liked the demo!'
+                echo 'ansible-playbook compare_server.yml -i ~/test_inventory --extra-vars "master=va10plvwbs443 my_userid=ag19884"'
             }
         }
 
