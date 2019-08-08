@@ -1,5 +1,5 @@
 ---
-workspace_dir: "{{ lookup('env','WORKSPACE') }}"
+#workspace_dir: "{{ lookup('env','WORKSPACE') }}"
 my_userid: "{{ lookup('env','MY_USERID') }}"
 master: "{{ lookup('env','MASTER_SERVER') }}"
 
@@ -28,3 +28,4 @@ master: "{{ lookup('env','MASTER_SERVER') }}"
 #
 # See 'ansible-vault <command> --help' for more information on a specific
 #command
+workspace_dir
