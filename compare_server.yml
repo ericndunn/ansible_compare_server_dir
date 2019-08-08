@@ -3,9 +3,7 @@
   gather_facts: true
   roles: [compare_server]
   vars: 
-    my_userid: "{{ lookup('env','MY_USERID') }}"
-    master: "{{ lookup('env','MASTER_SERVER') }}"
-  # vars_files: [compare_server/vars/main.yml] 
+  vars_files: [compare_server/vars/main.yml] 
    
 
 
