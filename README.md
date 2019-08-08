@@ -12,10 +12,14 @@ Compare contents of folders on remote hosts
 `/Users/UserID/inventory`
 
 `[AA-PROD-WAS]`
-`va10plvwbs443 inv_folder=/usr/WebSphere/wlp/usr/servers/b1_443_api/apps`
-`va10plvwbs444 inv_folder=/usr/WebSphere/wlp/usr/servers/b2_444_api/apps`
-`va10plvwbs445 inv_folder=/usr/WebSphere/wlp/usr/servers/b3_445_api/apps`
-`va10plvwbs446 inv_folder=/usr/WebSphere/wlp/usr/servers/b4_446_api/apps`
+
+`Servername1 inv_folder=/usr/WebSphere/wlp/usr/servers/b1_443_api/apps`
+
+`Servername2 inv_folder=/usr/WebSphere/wlp/usr/servers/b2_444_api/apps`
+
+`Servername3 inv_folder=/usr/WebSphere/wlp/usr/servers/b3_445_api/apps`
+
+`Servername4 inv_folder=/usr/WebSphere/wlp/usr/servers/b4_446_api/apps`
 
 
 # Variables:
@@ -33,6 +37,6 @@ In ansible There is no option to store passphrase-protected private key. For tha
 `ssh-add ~/.ssh/id_rsa`
 
 # Run Ansible Playbook
-`ansible-playbook -i /Users/UserID/inventory --extra-vars "my_userid=UserID master=Master_Server_Name"`
+`ansible-playbook -i /Users/UserID/inventory --extra-vars "my_userid=UserID master=Servername1"`
 
         
