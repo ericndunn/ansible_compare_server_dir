@@ -1,17 +1,6 @@
 ---
 workspace_dir: "{{ lookup('env','WORKSPACE') }}"
 my_userid: "{{ lookup('env','MY_USERID') }}"
-was_server_path: /usr/WebSphere/wlp/usr/servers
-perf1_api: "{{ was_server_path }}/perf1_api"
-perf2_api: "{{ was_server_path }}/perf2_api"
-perf3_api: "{{ was_server_path }}/perf3_api"
-perf4_api: "{{ was_server_path }}/perf4_api"
-perf5_api: "{{ was_server_path }}/perf5_api"
-perf1_api_apps: "{{ perf1_api }}/apps"
-perf2_api_apps: "{{ perf2_api }}/apps"
-perf3_api_apps: "{{ perf3_api }}/apps"
-perf4_api_apps: "{{ perf4_api }}/apps"
-perf5_api_apps: "{{ perf5_api }}/apps"
 master: "{{ lookup('env','MASTER_SERVER') }}"
 
 #### TEST --- IGNORE ###############
