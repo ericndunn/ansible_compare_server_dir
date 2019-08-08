@@ -1,4 +1,4 @@
 ---
-#workspace_dir: "{{ lookup('env','WORKSPACE') }}"
+workspace_dir: "{{ lookup('env','WORKSPACE') }}"
 my_userid: "{{ lookup('env','MY_USERID') }}"
 master: "{{ lookup('env','MASTER_SERVER') }}"
